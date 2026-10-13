@@ -1,0 +1,39 @@
+name: Plugin-Wunsch
+description: Ein neues Plugin oder Dateiformat vorschlagen
+title: "[Plugin] "
+labels: ["type: feature", "plugin: new", "status: needs-triage"]
+body:
+  - type: dropdown
+    id: art
+    attributes:
+      label: Art des Plugins
+      options:
+        - Vorschau-Format (viewer)
+        - Panel an der Island (panel)
+        - Zusätzliche Tools (tool)
+        - Sprach-Engine (engine)
+    validations:
+      required: true
+  - type: textarea
+    id: was
+    attributes:
+      label: Was soll es können?
+      description: Bei Vorschau-Formaten: Dateiendungen und was man sehen möchte.
+    validations:
+      required: true
+  - type: textarea
+    id: warum
+    attributes:
+      label: Wofür brauchst du es?
+  - type: textarea
+    id: beispiel
+    attributes:
+      label: Beispiele oder Vorbilder
+      description: Ein Programm, das es schon kann, oder eine Bibliothek, die dafür taugt (mit Lizenz).
+  - type: checkboxes
+    id: sicherheit
+    attributes:
+      label: Sicherheit
+      options:
+        - label: Ich habe keine Schlüssel, Tokens oder persönlichen Daten in dieses Ticket geschrieben.
+          required: true

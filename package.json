@@ -1,0 +1,18 @@
+{
+  "name": "kage-plugins",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Plugin-Verzeichnis für Kage",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "pruefen": "node tools/validate.mjs",
+    "pruefsummen": "node tools/checksums.mjs"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

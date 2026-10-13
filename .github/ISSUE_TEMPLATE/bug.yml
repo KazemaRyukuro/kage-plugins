@@ -1,0 +1,49 @@
+name: Fehler melden
+description: Ein Plugin oder die Prüfungen in diesem Repository funktionieren nicht wie erwartet
+title: "[Fehler] "
+labels: ["type: bug", "status: needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke fürs Melden! **Schreibe keine API-Schlüssel, Tokens oder persönlichen Daten in dieses Ticket.** Sicherheitsprobleme bitte nicht hier melden, sondern wie in der [Sicherheitsrichtlinie](https://github.com/KazemaRyukuro/kage-plugins/security/policy) beschrieben.
+  - type: input
+    id: plugin
+    attributes:
+      label: Welches Plugin?
+      description: ID und Version, zum Beispiel office-vorschau 1.0.2. Leer lassen, wenn es um das Repository selbst geht.
+  - type: input
+    id: kage
+    attributes:
+      label: Kage-Version
+      placeholder: "0.1.0"
+  - type: dropdown
+    id: system
+    attributes:
+      label: Betriebssystem
+      options:
+        - Windows
+        - Linux
+    validations:
+      required: true
+  - type: textarea
+    id: was
+    attributes:
+      label: Was ist passiert?
+    validations:
+      required: true
+  - type: textarea
+    id: erwartet
+    attributes:
+      label: Was hättest du erwartet?
+    validations:
+      required: true
+  - type: textarea
+    id: schritte
+    attributes:
+      label: Schritte zum Nachstellen
+      placeholder: |
+        1. Plugin installieren
+        2. …
+    validations:
+      required: true

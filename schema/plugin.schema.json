@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/KazemaRyukuro/kage-plugins/schema/plugin.schema.json",
+  "title": "Kage-Plugin-Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "name", "version", "kind", "description", "author", "minKageVersion", "platforms", "permissions", "entry", "files"],
+  "properties": {
+    "schema": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,40}$" },
+    "name": { "type": "string", "minLength": 2, "maxLength": 60 },
+    "version": { "type": "string", "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$" },
+    "kind": { "enum": ["viewer", "panel", "tool", "engine"] },
+    "description": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["de"],
+      "properties": {
+        "de": { "type": "string", "minLength": 5, "maxLength": 300 },
+        "en": { "type": "string", "minLength": 5, "maxLength": 300 }
+      }
+    },
+    "author": { "type": "string", "minLength": 2, "maxLength": 80 },
+    "homepage": { "type": "string", "format": "uri", "pattern": "^https://" },
+    "minKageVersion": { "type": "string", "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$" },
+    "platforms": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["windows", "linux"] }
+    },
+    "permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["list"],
+      "properties": {
+        "list": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["files.read.selected", "files.read.folders", "files.write.folders", "network", "clipboard.write", "run.process", "island.panel"] }
+        },
+        "networkHosts": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9.-]+\\.[a-z]{2,}$" }
+        },
+        "reason": { "type": "string", "maxLength": 500 }
+      }
+    },
+    "entry": { "type": "string", "pattern": "^[A-Za-z0-9._/-]+$", "not": { "pattern": "\\.\\." } },
+    "viewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["extensions"],
+      "properties": {
+        "extensions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9]{1,10}$" }
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256", "size"],
+        "properties": {
+          "path": { "type": "string", "pattern": "^[A-Za-z0-9._/-]+$", "not": { "pattern": "\\.\\.|^/" } },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "size": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "kind": { "const": "viewer" } } },
+      "then": { "required": ["viewer"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "viewer" } } },
+      "then": { "properties": { "permissions": { "properties": { "list": { "items": { "enum": ["files.read.selected"] } } } } } }
+    },
+    {
+      "if": { "properties": { "permissions": { "properties": { "list": { "contains": { "const": "network" } } }, "required": ["list"] } }, "required": ["permissions"] },
+      "then": { "properties": { "permissions": { "required": ["networkHosts"] } } }
+    }
+  ]
+}

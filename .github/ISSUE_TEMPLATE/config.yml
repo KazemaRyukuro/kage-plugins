@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Sicherheitslücke melden
+    url: https://github.com/KazemaRyukuro/kage-plugins/security/advisories/new
+    about: Bitte Sicherheitsprobleme nicht öffentlich als Ticket melden, sondern privat über GitHub.
+  - name: Fehler in Kage selbst
+    url: https://github.com/KazemaRyukuro/kage-island/issues
+    about: Probleme mit Kage selbst (nicht mit einem Plugin) gehören in das Hauptrepository.
+  - name: Plugin-Format lesen
+    url: https://github.com/KazemaRyukuro/kage-plugins/blob/main/docs/PLUGIN-FORMAT.md
+    about: Aufbau des Manifests und die möglichen Berechtigungen.

@@ -1,0 +1,16 @@
+name: Labels für Pull Requests
+
+on: pull_request_target
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      # Prüft nie den Code des Pull Requests aus, setzt nur Labels anhand der geänderten Dateien.
+      - uses: actions/labeler@v5
+        with:
+          sync-labels: true

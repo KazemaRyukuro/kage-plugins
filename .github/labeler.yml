@@ -1,0 +1,32 @@
+"area: manifest":
+  - changed-files:
+      - any-glob-to-any-file:
+          - schema/**
+          - plugins/*/plugin.json
+          - docs/PLUGIN-FORMAT.md
+"area: index":
+  - changed-files:
+      - any-glob-to-any-file:
+          - plugins/index.json
+"area: ci":
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/**
+          - tools/**
+          - package.json
+"area: security":
+  - changed-files:
+      - any-glob-to-any-file:
+          - SECURITY.md
+          - tools/validate.mjs
+"plugin: new":
+  - changed-files:
+      - any-glob-to-any-file:
+          - plugins/*/**
+        all-globs-to-all-files:
+          - "!plugins/_vorlage/**"
+          - "!plugins/index.json"
+"type: docs":
+  - changed-files:
+      - all-globs-to-all-files:
+          - "{docs/**,*.md,.github/*.md}"

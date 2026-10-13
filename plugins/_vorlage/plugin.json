@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "id": "vorlage",
+  "name": "Vorlage",
+  "version": "0.0.1",
+  "kind": "viewer",
+  "description": {
+    "de": "Beispiel für ein Vorschau-Plugin, nur zum Kopieren.",
+    "en": "Example viewer plugin, copy it to start your own."
+  },
+  "author": "KazemaRyukuro",
+  "minKageVersion": "0.1.0",
+  "platforms": ["windows", "linux"],
+  "permissions": {
+    "list": ["files.read.selected"],
+    "reason": "Liest nur die Datei, die in der Schnellvorschau markiert ist."
+  },
+  "entry": "viewer.html",
+  "viewer": {
+    "extensions": ["beispiel"]
+  },
+  "files": [
+    {
+      "path": "viewer.html",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "size": 0
+    }
+  ]
+}

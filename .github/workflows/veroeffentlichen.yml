@@ -1,0 +1,55 @@
+name: Plugin veröffentlichen
+
+# Nur von Hand und nur durch den Maintainer. Baut das Archiv eines Plugins und hängt es an ein Release.
+# Ohne Signaturschlüssel bricht der Lauf ab, damit nie etwas Unsigniertes veröffentlicht wird.
+
+on:
+  workflow_dispatch:
+    inputs:
+      plugin:
+        description: ID des Plugins (Ordner unter plugins/)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  veroeffentlichen:
+    name: Archiv bauen und veröffentlichen
+    runs-on: ubuntu-latest
+    environment: veroeffentlichung
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Alles prüfen
+        run: npm run pruefen
+      - name: Signaturschlüssel vorhanden?
+        env:
+          SCHLUESSEL: ${{ secrets.KAGE_PLUGIN_SIGNING_KEY }}
+        run: |
+          if [ -z "$SCHLUESSEL" ]; then
+            echo "::error::Der Signaturschlüssel (KAGE_PLUGIN_SIGNING_KEY) fehlt. Es wird nichts Unsigniertes veröffentlicht."
+            exit 1
+          fi
+      - name: Archiv bauen
+        env:
+          PLUGIN: ${{ inputs.plugin }}
+        run: |
+          set -euo pipefail
+          case "$PLUGIN" in (*[!a-z0-9-]*|"") echo "::error::Ungültige Plugin-ID"; exit 1;; esac
+          version=$(node -p "require('./plugins/$PLUGIN/plugin.json').version")
+          mkdir -p dist
+          (cd "plugins/$PLUGIN" && zip -r -X "../../dist/$PLUGIN-$version.zip" .)
+          sha256sum "dist/$PLUGIN-$version.zip" > "dist/$PLUGIN-$version.zip.sha256"
+          echo "TAG=plugin-$PLUGIN-$version" >> "$GITHUB_ENV"
+          echo "ZIP=dist/$PLUGIN-$version.zip" >> "$GITHUB_ENV"
+      - name: Release anlegen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$TAG" "$ZIP" "$ZIP.sha256" --title "$TAG" --notes "Plugin-Archiv. Prüfsumme in der .sha256-Datei und im Index."

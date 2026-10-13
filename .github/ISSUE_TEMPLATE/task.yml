@@ -1,0 +1,25 @@
+name: Aufgabe
+description: Eine konkrete Arbeitsaufgabe (für Maintainer und Mitwirkende)
+title: ""
+labels: ["type: task"]
+body:
+  - type: textarea
+    id: ziel
+    attributes:
+      label: Ziel
+      description: Was soll danach möglich sein?
+    validations:
+      required: true
+  - type: textarea
+    id: abnahme
+    attributes:
+      label: Fertig, wenn
+      value: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: hinweise
+    attributes:
+      label: Hinweise

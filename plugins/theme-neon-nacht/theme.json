@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "name": "Neon Nacht",
+  "author": "KazemaRyukuro",
+  "description": "Dunkelblaue Kapsel mit leuchtendem Türkis, etwas straffere Bewegung.",
+  "colors": {
+    "background": "#05060f",
+    "text": "#e8fff9",
+    "muted": "#7fa8a0",
+    "accent": "#00ffcc",
+    "onAccent": "#03120e",
+    "danger": "#ff4d6d",
+    "warning": "#ffd166",
+    "success": "#06d6a0",
+    "surface": "rgba(0, 255, 204, 0.10)",
+    "surfaceHover": "rgba(0, 255, 204, 0.20)",
+    "border": "rgba(0, 255, 204, 0.18)"
+  },
+  "island": { "idleWidth": 132, "idleHeight": 36, "expandedRadius": 30 },
+  "motion": { "stiffness": 480, "damping": 28, "mass": 1 },
+  "eye": { "glow": 1.6 }
+}

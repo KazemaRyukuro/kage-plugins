@@ -19,6 +19,7 @@ Das Plugin-Verzeichnis für [Kage](https://github.com/KazemaRyukuro/kage-island)
 | `panel` | Zusätzliche Fläche an der Island | Wetter, Musik, Kalender |
 | `tool` | Zusätzliche Kage-Tools | Server-Anbindungen, eigene Befehle |
 | `engine` | Zusätzliche Sprach-Engine | weitere Anbieter |
+| `theme` | Aussehen der Island: Farben, Schrift, Größen, Bewegung. Nur Daten, kein Code, keine Berechtigungen | Neon Nacht, Papier |
 
 ## Aufbau des Repositorys
 
@@ -26,8 +27,9 @@ Das Plugin-Verzeichnis für [Kage](https://github.com/KazemaRyukuro/kage-island)
 plugins/
   index.json            Verzeichnis aller veröffentlichten Plugins (wird signiert)
   _vorlage/             Vorlage für neue Plugins
+  _vorlage-theme/       Vorlage für neue Themes
   <plugin-id>/          je Plugin ein Ordner mit plugin.json und seinen Dateien
-schema/                 JSON-Schemas für Manifest und Index
+schema/                 JSON-Schemas für Manifest, Index und Theme-Dateien
 tools/validate.mjs      Prüfung von Manifesten, Prüfsummen und Index (läuft im CI)
 docs/PLUGIN-FORMAT.md   Beschreibung des Formats
 ```

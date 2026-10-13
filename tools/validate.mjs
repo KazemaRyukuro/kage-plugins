@@ -17,6 +17,7 @@ const ajv = new Ajv({ allErrors: true, strict: false })
 addFormats(ajv)
 const validateManifest = ajv.compile(readJson(join(root, 'schema', 'plugin.schema.json')))
 const validateIndex = ajv.compile(readJson(join(root, 'schema', 'index.schema.json')))
+const validateTheme = ajv.compile(readJson(join(root, 'schema', 'theme.schema.json')))
 
 const problems = []
 const fail = (where, text) => problems.push(`${where}: ${text}`)
@@ -52,6 +53,19 @@ for (const folder of folders) {
   }
   if (!isTemplate && manifest.id !== folder.name) fail(where, `ID "${manifest.id}" passt nicht zum Ordnernamen`)
   if (!manifest.files.some((file) => file.path === manifest.entry)) fail(where, `entry "${manifest.entry}" steht nicht in files`)
+  if (manifest.kind === 'theme') {
+    // Ein Theme besteht nur aus Daten: Die Datei im Einstieg muss zum Theme-Schema passen.
+    const themePath = resolve(dir, manifest.entry)
+    if (!existsSync(themePath)) fail(where, `Theme-Datei fehlt: ${manifest.entry}`)
+    else {
+      try {
+        const theme = readJson(themePath)
+        if (!validateTheme(theme)) fail(where, `Theme ungültig: ${describe(validateTheme.errors)}`)
+      } catch (error) {
+        fail(where, `Theme-Datei ist kein gültiges JSON (${error.message})`)
+      }
+    }
+  }
   if (isTemplate) continue
 
   const declared = new Set()

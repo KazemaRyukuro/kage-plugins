@@ -9,6 +9,7 @@
     "en": "Example viewer plugin, copy it to start your own."
   },
   "author": "KazemaRyukuro",
+  "license": "MIT",
   "minKageVersion": "0.1.0",
   "platforms": ["windows", "linux"],
   "permissions": {

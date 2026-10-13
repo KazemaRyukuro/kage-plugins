@@ -15,6 +15,10 @@ Lege ein Ticket mit der Vorlage **Plugin-Wunsch** an. Beschreibe, was das Plugin
 5. Prüfe lokal: `npm ci && npm run pruefen`.
 6. Öffne einen Pull Request und fülle die Checkliste in der Vorlage aus.
 
+## Lizenz
+
+Das Repository steht unter der [MIT-Lizenz](LICENSE). Mit deinem Pull Request stellst du dein Plugin ebenfalls darunter, außer es bringt eine eigene Lizenz mit: Dann trage sie im Manifest unter `license` ein (SPDX-Kennung, z. B. `Apache-2.0`) und lege die Lizenzdatei in den Plugin-Ordner. Gibst du Code von Dritten weiter, nenne dessen Lizenz in der README des Plugins. Lizenzen, die eine Weitergabe von Kage verbieten oder erzwingen (z. B. GPL), nehmen wir nur nach Absprache auf.
+
 ## Regeln
 
 - Keine Schlüssel, Tokens oder persönlichen Daten, auch nicht in Tests oder Beispielen.

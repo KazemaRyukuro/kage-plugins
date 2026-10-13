@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "id": "theme-neon-nacht",
+  "name": "Neon Nacht",
+  "version": "1.0.0",
+  "kind": "theme",
+  "description": {
+    "de": "Dunkelblaue Kapsel mit leuchtendem Türkis, etwas straffere Bewegung.",
+    "en": "Dark blue capsule with glowing turquoise and slightly snappier motion."
+  },
+  "author": "KazemaRyukuro",
+  "license": "MIT",
+  "minKageVersion": "0.1.0",
+  "platforms": [
+    "windows",
+    "linux"
+  ],
+  "permissions": {
+    "list": []
+  },
+  "entry": "theme.json",
+  "files": [
+    {
+      "path": "theme.json",
+      "sha256": "2a43a2c2d3c7252ba4f4352519a29b23232168d1234b9c2f1717b69fc6044ec9",
+      "size": 674
+    }
+  ]
+}

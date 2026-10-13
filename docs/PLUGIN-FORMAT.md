@@ -11,7 +11,7 @@ Diese Beschreibung gehört zum Schema in `schema/plugin.schema.json`. Der Gesamt
 | `name`, `description` | Anzeigename und Beschreibung (`de` Pflicht, `en` optional) |
 | `license` | SPDX-Kennung der Lizenz des Plugins (Standard: MIT wie das Repository) |
 | `version`, `minKageVersion` | Version des Plugins und die kleinste Kage-Version, mit der es läuft |
-| `kind` | `viewer`, `panel`, `tool` oder `engine` |
+| `kind` | `viewer`, `panel`, `tool`, `engine` oder `theme` |
 | `platforms` | `windows`, `linux` |
 | `permissions` | Liste der Berechtigungen, bei `network` zusätzlich `networkHosts`, dazu eine Begründung |
 | `entry` | Einstiegspunkt innerhalb des Plugin-Ordners |
@@ -35,3 +35,26 @@ Vorschau-Plugins (`viewer`) dürfen ausschließlich `files.read.selected` haben.
 ## plugins/index.json
 
 Das Verzeichnis, das Kage lädt. Pro Plugin steht dort die aktuelle Version mit Größe, SHA-256 des Archivs und der Adresse des Release-Archivs. Unter `revoked` stehen zurückgezogene Versionen, die Kage nicht mehr lädt. Die Datei wird beim Veröffentlichen signiert (Ed25519), die Signatur liegt als `index.json.sig` daneben.
+
+## Themes (`kind: "theme"`)
+
+Ein Theme bestimmt, wie die Island aussieht. Es besteht nur aus Daten, nie aus Code, und braucht deshalb **keine Berechtigungen** (`permissions.list` ist leer, das erzwingt das Schema). `entry` zeigt auf die Theme-Datei, zum Beispiel `theme.json`. Sie muss zu `schema/theme.schema.json` passen, das prüft `npm run pruefen`.
+
+```json
+{
+  "schema": 1,
+  "name": "Neon Nacht",
+  "colors": { "background": "#05060f", "text": "#e8fff9", "accent": "#00ffcc" },
+  "island": { "idleWidth": 132, "idleHeight": 36, "expandedRadius": 30 },
+  "typography": { "family": "'Segoe UI', sans-serif", "size": 13 },
+  "motion": { "stiffness": 480, "damping": 28, "mass": 1 },
+  "eye": { "glow": 1.6 }
+}
+```
+
+- Alles ist optional. Was fehlt, übernimmt Kage vom eingebauten Apple-Stil.
+- Farben: `#rgb`, `#rrggbb`, `#rrggbbaa` oder `rgb()` und `rgba()`. `accent` darf zusätzlich `"system"` sein (Akzentfarbe von Windows).
+- Schrift: nur Schriftnamen und Kommas, keine Adressen und keine Klammern. Schriftdateien liefert ein Theme nicht mit.
+- Was der Nutzer in den Einstellungen selbst geändert hat (zum Beispiel die Breite der Island), geht vor dem Theme.
+- Das Schema wird aus dem Code von Kage erzeugt (`src/shared/theme.ts`), damit beide nicht auseinanderlaufen.
+

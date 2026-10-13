@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "id": "theme-papier",
+  "name": "Papier",
+  "version": "1.0.0",
+  "kind": "theme",
+  "description": {
+    "de": "Helle, ruhige Kapsel für helle Bildschirme, mit weicher Bewegung.",
+    "en": "Light, calm capsule for bright screens with soft motion."
+  },
+  "author": "KazemaRyukuro",
+  "license": "MIT",
+  "minKageVersion": "0.1.0",
+  "platforms": [
+    "windows",
+    "linux"
+  ],
+  "permissions": {
+    "list": []
+  },
+  "entry": "theme.json",
+  "files": [
+    {
+      "path": "theme.json",
+      "sha256": "f87cd69fe9b10142840a4dc692d82789d453e4f04d6d01bfe1bec5fe2cfd74f8",
+      "size": 669
+    }
+  ]
+}

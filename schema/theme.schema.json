@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "number",
+      "const": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 60
+    },
+    "author": {
+      "type": "string",
+      "maxLength": 80
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 300
+    },
+    "colors": {
+      "type": "object",
+      "properties": {
+        "background": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*(,\\s*(0|1|0?\\.\\d{1,3})\\s*)?\\))$"
+        },
+        "text": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*(,\\s*(0|1|0?\\.\\d{1,3})\\s*)?\\))$"
+        },
+        "muted": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*(,\\s*(0|1|0?\\.\\d{1,3})\\s*)?\\))$"
+        },
+        "accent": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "system"
+            },
+            {
+              "type": "string",
+              "pattern": "^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*(,\\s*(0|1|0?\\.\\d{1,3})\\s*)?\\))$"
+            }
+          ]
+        },
+        "onAccent": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*(,\\s*(0|1|0?\\.\\d{1,3})\\s*)?\\))$"
+        },
+        "danger": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*(,\\s*(0|1|0?\\.\\d{1,3})\\s*)?\\))$"
+        },
+        "warning": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*(,\\s*(0|1|0?\\.\\d{1,3})\\s*)?\\))$"
+        },
+        "success": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*(,\\s*(0|1|0?\\.\\d{1,3})\\s*)?\\))$"
+        },
+        "surface": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*(,\\s*(0|1|0?\\.\\d{1,3})\\s*)?\\))$"
+        },
+        "surfaceHover": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*(,\\s*(0|1|0?\\.\\d{1,3})\\s*)?\\))$"
+        },
+        "border": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*(,\\s*(0|1|0?\\.\\d{1,3})\\s*)?\\))$"
+        }
+      }
+    },
+    "island": {
+      "type": "object",
+      "properties": {
+        "opacity": {
+          "type": "number",
+          "minimum": 0.4,
+          "maximum": 1
+        },
+        "shadow": {
+          "type": "boolean"
+        },
+        "idleWidth": {
+          "type": "number",
+          "minimum": 100,
+          "maximum": 260
+        },
+        "idleHeight": {
+          "type": "number",
+          "minimum": 24,
+          "maximum": 48
+        },
+        "expandedRadius": {
+          "type": "number",
+          "minimum": 8,
+          "maximum": 48
+        }
+      }
+    },
+    "typography": {
+      "type": "object",
+      "properties": {
+        "family": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9 ,'\"._-]{1,200}$"
+        },
+        "size": {
+          "type": "number",
+          "minimum": 11,
+          "maximum": 16
+        }
+      }
+    },
+    "motion": {
+      "type": "object",
+      "properties": {
+        "stiffness": {
+          "type": "number",
+          "minimum": 100,
+          "maximum": 900
+        },
+        "damping": {
+          "type": "number",
+          "minimum": 10,
+          "maximum": 80
+        },
+        "mass": {
+          "type": "number",
+          "minimum": 0.3,
+          "maximum": 2
+        }
+      }
+    },
+    "eye": {
+      "type": "object",
+      "properties": {
+        "glow": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        }
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "name"
+  ],
+  "additionalProperties": false,
+  "$id": "https://github.com/KazemaRyukuro/kage-plugins/schema/theme.schema.json",
+  "title": "Kage-Theme"
+}

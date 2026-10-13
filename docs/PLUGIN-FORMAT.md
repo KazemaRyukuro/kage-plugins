@@ -9,6 +9,7 @@ Diese Beschreibung gehört zum Schema in `schema/plugin.schema.json`. Der Gesamt
 | `schema` | Version des Formats, aktuell `1` |
 | `id` | Kleinbuchstaben, Ziffern, Bindestriche (3 bis 41 Zeichen), muss dem Ordnernamen entsprechen |
 | `name`, `description` | Anzeigename und Beschreibung (`de` Pflicht, `en` optional) |
+| `license` | SPDX-Kennung der Lizenz des Plugins (Standard: MIT wie das Repository) |
 | `version`, `minKageVersion` | Version des Plugins und die kleinste Kage-Version, mit der es läuft |
 | `kind` | `viewer`, `panel`, `tool` oder `engine` |
 | `platforms` | `windows`, `linux` |

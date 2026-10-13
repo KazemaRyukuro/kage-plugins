@@ -36,6 +36,10 @@ docs/PLUGIN-FORMAT.md   Beschreibung des Formats
 
 Ein eigenes Plugin vorschlagen oder einreichen: siehe [CONTRIBUTING.md](CONTRIBUTING.md). Sicherheitsprobleme bitte **nicht** öffentlich melden, sondern wie in [SECURITY.md](SECURITY.md) beschrieben.
 
+## Lizenz
+
+[MIT](LICENSE). Ein Plugin von Dritten darf eine eigene Lizenz mitbringen, die dann im Manifest unter `license` (SPDX-Kennung) steht und als Datei `LICENSE` im Plugin-Ordner liegt.
+
 ## Prüfen
 
 ```bash

@@ -11,6 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Prüft nie den Code des Pull Requests aus, setzt nur Labels anhand der geänderten Dateien.
-      - uses: actions/labeler@v5
+      - uses: actions/labeler@v7
         with:
           sync-labels: true
